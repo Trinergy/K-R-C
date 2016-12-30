@@ -1,0 +1,59 @@
+
+#include <stdio.h>
+
+#define MAXLINE 1000
+
+int getline2(char line[], int maxline);
+void copy(char to[], char from[]);
+
+/* the \n and /0 count as char length. 
+need to print correct length number */
+
+int main()
+{
+  int len;
+  int max;
+  char line[MAXLINE];
+  char longest[MAXLINE];
+
+  max = 0;
+
+  while ((len = getline2(line, MAXLINE)) > 0) {
+    if (len > max) {
+      max = len;
+      copy(longest, line);
+    }
+  }
+  if (max > 0) {
+    printf("%s length %d", longest, max);
+  }
+  return 0;
+} 
+
+int getline2(char s[], int lim) 
+{
+  int c, i, j;
+
+  for (i = 0, j = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i) {
+		if (c != '\t' && c != ' ')
+		{
+			s[j] = c;
+			j++;
+		}
+  }
+  if (c == '\n') {
+    s[j] = c;
+    ++j;
+  }
+  s[j] = '\0';
+  return j-1;
+}
+
+void copy(char to[], char from[]) 
+{
+  int i;
+
+  i = 0;
+  while ((to[i] = from [i]) != '\0')
+    ++i;
+}
