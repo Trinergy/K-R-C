@@ -37,7 +37,7 @@ int getline2(char s[], int lim)
   for (i = 0, j = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i) {
 		if (c != '\t' && c != ' ')
 		{
-    	s[j] = c;
+			s[j] = c;
 			j++;
 		}
   }
